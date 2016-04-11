@@ -25,8 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="f6f60499-f6d9-4367-8d46-eb3f51dbec70">
-        <schema name="mysql" object-types="function, table" />
-        <schema name="test_django" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
+        <schema name="eaca_portfolio" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -34,6 +33,9 @@
     <connection id="f6f60499-f6d9-4367-8d46-eb3f51dbec70">
       <console name="localhost" type="STANDARD"><![CDATA[insert into main_fileexpansion(type_file) values ('.exe'),('.txt');]]></console>
     </connection>
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-list connection-id="f6f60499-f6d9-4367-8d46-eb3f51dbec70" dataset="eaca_portfolio.main_doctype" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

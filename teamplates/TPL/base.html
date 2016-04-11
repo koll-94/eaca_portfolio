@@ -1,0 +1,23 @@
+{% block header %}
+<html>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href='{% static "css/" %}style.css' />
+	<link rel="stylesheet" type="text/css" href='{% static "css/" %}jchat.css' />
+	<head>
+    	<title>{% block title %}{% endblock %}</title>
+  	</head>
+  	<body>
+{% endblock %}
+
+<div class="main">
+{% block menu %}
+{% endblock %}
+
+{% block main %}
+{% endblock %}
+</div>
+
+{% block footer %}
+	</body>
+</html>
+{% endblock %}

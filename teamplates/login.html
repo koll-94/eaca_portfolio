@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Аутентификация{% endblock %}
+{% block headbody %} {% endblock %}
+{% block main %}
+{% load staticfiles %}
+<script>
+document.onkeypress = function(e){
+	if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+		document.forms[0].submit();
+    }
+}
+</script>
+ттт
+<div class="login-blok">
+    <form name="login_form" action="/login/" method="post">
+    {% csrf_token %}
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+    {% endif %}
+    {% for field in form %}
+       <div class="control-group">
+       	<label class="control-label" for={{ field.id_for_label }}><div class="label-div">{{ field.label }}</div></label>
+       	<input class="controls" {% if field.html_name = "password" %}type="password"{% else %}type="text"{% endif %} id={{ field.id_for_label }} name={{ field.html_name }}>
+       	{{ field.errors }}
+       </div>
+    {% endfor %}
+    <div class="control-group">
+        <div class="div-submit" onClick="javascript:document.forms[0].submit();">Войти</div>
+    </div>
+    </form>
+</div>
+{% endblock %}

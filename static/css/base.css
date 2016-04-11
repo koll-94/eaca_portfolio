@@ -1,0 +1,102 @@
+ body {
+  background-color: #ffffff;
+  margin: 10;
+  font-family: 'Times New Roman', Helvetica, sans-serif;
+  background: url('../img/background.png') repeat;
+}
+
+.main {
+    display: block;
+    width: 1000px;
+    max-width: 1000px;
+    min-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    min-height: 100%;
+}
+
+.login-blok{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%)
+}
+
+.control-group {
+	white-space: nowrap;
+	margin-bottom: 20px;
+}
+
+.login-logo {
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
+
+.div-submit {
+	background-color: #138bf0;
+	color: black;
+	text-align: center;
+	padding: 10px 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.control-label {
+	display:inline-block;
+    width:100px;
+	margin-right: 10px;
+}
+
+.controls {
+	padding: 10px 10px;
+	line-height: 15px;
+}
+
+.main-logo {
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: right;
+    width: 50px;
+}
+
+.box-center
+{
+    left: 50%;
+	margin-right: -50%;
+}
+
+.head_table
+{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+
+.main-menu
+{
+    width: 1000px;
+    position: center;
+    height: 12px;
+    margin-bottom: 55px;
+}
+
+.head_main
+{
+    display: block;
+    width: 1000px;
+    max-width: 1000px;
+    min-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}

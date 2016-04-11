@@ -1,0 +1,79 @@
+{% block header %}
+<html>
+  {% load staticfiles %}
+  <script type="text/javascript" src="{% static 'js/' %}jquery.js"></script>
+  <script type="text/javascript" src="{% static 'js/ui/' %}jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'js/ui/' %}jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href='{% static "css/" %}base.css' />
+  <link rel="stylesheet" type="text/css" href='{% static "css/" %}jqx.base.css' />
+  <script type="text/javascript" src="{% static 'js/' %}jqxcore.js"></script>
+    <script type="text/javascript" src="{% static 'js/' %}jqxmenu.js"></script>
+
+	<head>
+    	<title>{% block title %}{% endblock %}</title>
+  	</head>
+  	<body>
+  {% block headbody %}
+        <div class="head_main">
+            <table class="head_table">
+                <tr>
+                   <td style="width:25%">
+                   <span style="profile">{{ profile }}</span>
+                   </td>
+                    <td style="width:50%">
+                        <p>Фио {{ user_fn }} {{ user_sn }} {{ user_ln }}</p>
+                        <p>Дата рождения {{ birthday }}</p>
+                        <p>Кафедра {{ kaf }}</p>
+                    </td>
+                    <td style="width:25%">
+                        <img class="main-logo" src="{% static 'img/logo.png' %}" alt="logo"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+  {% endblock %}
+{% endblock %}
+
+<div class="main">
+{% block menu %}
+    <div id='content'>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#jqxMenu").jqxMenu({ width: 1000, height: 30 });
+    });
+    </script>
+    <div id='jqxWidget'>
+    <div id='jqxMenu'>
+        <ul>
+            <li>
+             <div style="width: 210px"><a href="">Профиль</a></div>
+            </li>
+            <li>
+             <div style="width: 210px"><a href="/document">Документы</a></div>
+                <ul>
+
+                    {% for row in doctype %}
+                    <li><div>{{ row.desc }}</div></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+             <div style="width: 210px"><a href="">Отчеты</a></div>
+            </li>
+            <li>
+             <div style="width: 210px"><a href="">Выход</a></div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+{% endblock %}
+</div>
+
+{% block footer %}
+	</body>
+</html>
+{% endblock %}

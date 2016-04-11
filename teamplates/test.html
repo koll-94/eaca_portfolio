@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Портфолио</title>
 </head>
-<body>
+<header>
+    Еаси портфолио, Здравствуй {{FIO}}
+</header>
+<body style='background-color: #369091;'>
+<base>
+<p>Профиль</p>
+<p>Документы</p>
+<p>Отчет</p>
+<p style="color: red"><a href="/login" title="Выход">Выход</a></p>
+</body>
+
+</html>
+
+<!--
+<menu>
+    <img src="{% static '' %}/pycharm.png">
+    <button> балаболия </button>
+</menu>
 {{ data }}
 <p>
 Сегоднешняя дата {{ date }}
@@ -14,7 +31,4 @@
     </p>
 {% for row in file_exp %}
 {{ row.type_file }}
-{% endfor %}
-<img src="{% static '' %}/pycharm.png">
-</body>
-</html>
+{% endfor %}-->

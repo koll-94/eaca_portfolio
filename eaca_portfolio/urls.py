@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """test_django URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,12 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from main import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^test/', views.test)
+    url(r'^$', views.LoginFormView.as_view()),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^login/$', views.LoginFormView.as_view()),
+    url(r'^logout/$', views.LogoutView.as_view()),
+    url(r'^main/$', views.main),
+    url(r'^document/$', views.grid_document),
 ]
 
