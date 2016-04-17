@@ -4,5 +4,30 @@
 
 {% block main %}
 <div class="main">
+    <form name="main_form" action="/main/" method="post">
+    <table>
+        <tr><td rowspan="4"> <input type="file" value="{{ foto }}"> </td> <td> ФИО </td> <td> {{ fio }}</td> </tr>
+        <tr><td> Должность </td> <td> {{ dolgnost }} </td> </tr>
+        <tr><td> Кафедра </td> <td> {{ kaf }}</td> </tr>
+        <tr><td> Ученая степень </td> <td> {{ uch_step }} </td> </tr>
+        <tr><td> Вуз, специальность, год окончания </td> <td> {{ diplom }} </td> </tr>
+        <tr><td> Квалификация </td> <td> {{ kval }} </td> </tr>
+        <tr><td> общий стаж</td> <td> {{ experience_all }} </td> </tr>
+        <tr><td> стаж по специальности</td> <td> {{ experience_spec }}</td> </tr>
+        <tr><td> стаж в еаси </td> <td> {{ experience_easa }} </td> </tr>
+        <tr><td> Повышение квалификации </td> <td> {{ document_kval }}</td> </tr>
+        <tr><td> Работа в составе диссертац совета</td> <td> {{ che }}</td> </tr>
+        <tr><td> Сфера научных интересов</td> <td> {{ sience_inter }} </td> </tr>
+        <tr><td> Научные достижения </td> </tr>
+        <tr><td> Индекс Хирша </td> <td> {{ hirsh }} </td> </tr>
+        <tr><td> Зарубежные публикации</td> <td> {{ document_eng_pub }} </td> </tr>
+        <tr><td> Монографии статьи в монографиях</td> <td> {{ document_stat }} </td> </tr>
+        <tr><td> Статьи ВАК </td> <td> {{ document_stat_vak }} </td> </tr>
+        <tr><td> Учебники(в т.ч. с грифами)</td> <td> {{ document_books }} </td> </tr>
+        <tr><td> Поддержаные гранты:</td> </tr>
+        <tr><td> Руководитель </td> <td> {{ grant_ruk }} </td> </tr>
+<tr><td> Исполнитель </td> <td> {{ grant_isp }} </td> </tr>
+    </table>
+        </form>
 </div>
 {% endblock %}

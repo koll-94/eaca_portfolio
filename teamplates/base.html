@@ -22,7 +22,7 @@
                    </td>
                     <td style="width:50%">
                         <p>Фио {{ user_fn }} {{ user_sn }} {{ user_ln }}</p>
-                        <p>Дата рождения {{ birthday }}</p>
+                        <p>Должность {{ dolgnost }}</p>
                         <p>Кафедра {{ kaf }}</p>
                     </td>
                     <td style="width:25%">
@@ -46,10 +46,10 @@
     <div id='jqxMenu'>
         <ul>
             <li>
-             <div style="width: 210px"><a href="">Профиль</a></div>
+             <div style="width: 210px"><a href="/main">Профиль</a></div>
             </li>
             <li>
-             <div style="width: 210px"><a href="/document">Документы</a></div>
+             <div style="width: 210px"><a href="/document_grid">Документы</a></div>
                 <ul>
 
                     {% for row in doctype %}

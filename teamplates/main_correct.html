@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Портфолио{% endblock %}
+
+
+{% block main %}
+<script>
+document.onkeypress = function(e){
+	if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+		document.forms[0].submit();
+    }
+}
+</script>
+<div class="main">
+    <form name="main_form" action="/main/" method="post">
+    <table>
+        <tr><td rowspan="4"> <input type="file" value="{{ foto }}"> </td> <td> ФИО </td> <td> <input type="text" value="{{ fio }}"></td> </tr>
+        <tr><td> Должность </td> <td> <input type="text" value="{{ dolgnost }}"> </td> </tr>
+        <tr><td> Кафедра </td> <td> <input type="text" value="{{ kaf }}"></td> </tr>
+        <tr><td> Ученая степень </td> <td> <input type="text" value="{{ uch_step }}"> </td> </tr>
+        <tr><td> Вуз, специальность, год окончания </td> <td> <input type="text" value="{{ diplom }}"> </td> </tr>
+        <tr><td> Квалификация </td> <td> <input type="text" value="{{ kval }}"> </td> </tr>
+        <tr><td> общий стаж</td> <td> <input type="text" value="{{ experience_all }}"> </td> </tr>
+        <tr><td> стаж по специальности</td> <td> <input type="text" value="{{ experience_spec }}"></td> </tr>
+        <tr><td> стаж в еаси </td> <td> <input type="text" value="{{ experience_easa }}"> </td> </tr>
+        <tr><td> Повышение квалификации </td> <td> <input type="text" value="{{ document_kval }}"></td> </tr>
+        <tr><td> Работа в составе диссертац совета</td> <td> <input type="text" value="{{ che }}"></td> </tr>
+        <tr><td> Сфера научных интересов</td> <td> <input type="text" value="{{ sience_inter }}"> </td> </tr>
+        <tr><td> Научные достижения </td> </tr>
+        <tr><td> Индекс Хирша </td> <td> <input type="text" value="{{ hirsh }}"> </td> </tr>
+        <tr><td> Зарубежные публикации</td> <td> <input type="text" value="{{ document_eng_pub }}"> </td> </tr>
+        <tr><td> Монографии статьи в монографиях</td> <td> <input type="text" value="{{ document_stat }}"> </td> </tr>
+        <tr><td> Статьи ВАК </td> <td> <input type="text" value="{{ document_stat_vak }}"> </td> </tr>
+        <tr><td> Учебники(в т.ч. с грифами)</td> <td> <input type="text" value="{{ document_books }}"> </td> </tr>
+        <tr><td> Поддержаные гранты:</td> </tr>
+        <tr><td> Руководитель </td> <td> <input type="text" value="{{ grant_ruk }}"> </td> </tr>
+<tr><td> Исполнитель </td> <td> <input type="text" value="{{ grant_isp }}"> </td> </tr>
+    </table>
+            <div class="control-group">
+        <div class="div-submit" onClick="javascript:document.forms[0].submit();">Войти</div>
+    </div>
+        </form>
+</div>
+{% endblock %}
+
+#Кнопку что бы отправлять

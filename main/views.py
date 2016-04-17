@@ -5,12 +5,15 @@ from django.shortcuts import render_to_response
 from datetime import datetime
 from main.models import FileExpansion
 from main.models import DocType
-from main.models import Document
+from main.models import DocField
+from main.models import Profile
+from main.models import DocStructure
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.views.generic.base import View
 from django.http import *
+
 
 def test(request):
     file_exp = FileExpansion.objects.filter()
@@ -78,21 +81,27 @@ def main(reqwest):
     return render_to_response('main.html', templ_data)
 
 
-@private()
-def save_document (request, doc_type_id, name, year):
-    obj_year = datetime.strptime(year, '%d.%m.%Y').date ()
-    obj_doc_type_id = .objects.get (pk = course)
-    obj_name = CourseState.objects.get (pk = state)
-    obj_user = request.user
-    UserCourseState.objects.update_or_create (user = obj_user, doc_type_id = obj_doc_type_id, year = obj_year, name = obj_name)
-    return HttpResponseRedirect ("/grid_document/")
+# @private()
+# def save_document (request, doc_type_id, name, year):
+#     obj_year = datetime.strptime(year, '%d.%m.%Y').date ()
+#     obj_doc_type_id = .objects.get (pk = course)
+#     obj_name = CourseState.objects.get (pk = state)
+#     obj_user = request.user
+#     UserCourseState.objects.update_or_create (user = obj_user, doc_type_id = obj_doc_type_id, year = obj_year, name = obj_name)
+#     return HttpResponseRedirect ("/grid_document/")
 
 
 @private()
 def grid_document(reqwest):
-    document = Document.objects.filter()
+    document = DocField.objects.filter(),
+    docstructures = DocStructure.objects.filter(),
+    doctypes = DocType.objects.all(),
+    docfield = DocField.objects.select_related().filter(doc_id__user__id = reqwest.user.id)
     templ_data = {
         'doc': document,
+        'docstructures': docstructures[0],
+        'doctypes': doctypes[0],
+        'docfield': docfield[0] if docfield else None,
     }
     return render_to_response('document_grid.html', templ_data)
 
@@ -100,3 +109,10 @@ def grid_document(reqwest):
 @private()
 def form_document(reqwest):
     pass
+
+def main_correct(reqwest):
+    UchStep = Profile.objects.filter()
+    templ_data = {
+        'uch_step': UchStep,
+    }
+    return render_to_response('main_correct.html', templ_data)

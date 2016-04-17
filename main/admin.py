@@ -6,7 +6,7 @@ from . import models
 @admin.register(models.DocType)
 class DocTypeAdmin (admin.ModelAdmin):
     fieldsets = [
-        (u'Тип документа', {'fields': ['desc']}),
+        (u'Тип документа', {'fields': ['name']}),
     ]
 
-    list_display = ('desc',)
+    list_display = ('name',)

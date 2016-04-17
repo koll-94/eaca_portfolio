@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Аутентификация{% endblock %}
-{% block headbody %} {% endblock %}
+{% block headbody %}
+{% endblock %}
 {% block main %}
 {% load staticfiles %}
 <script>
@@ -10,7 +11,7 @@ document.onkeypress = function(e){
     }
 }
 </script>
-ттт
+<img class="login-logo" src="{% static 'img/logo.png' %}" alt="logo"/>
 <div class="login-blok">
     <form name="login_form" action="/login/" method="post">
     {% csrf_token %}
@@ -29,4 +30,6 @@ document.onkeypress = function(e){
     </div>
     </form>
 </div>
+{% endblock %}
+{% block menu %}
 {% endblock %}
