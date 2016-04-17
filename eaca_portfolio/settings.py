@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -83,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eaca_portfolio',
-        'USER': 'root',
+        'USER': 'django',
         'PASSWORD': 'Iq244iq244',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',

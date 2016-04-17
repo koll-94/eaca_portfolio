@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Документы{% endblock %}
+
+{% block main %}
+<p class="doctype-header">{{ doctype.name }}</p>
+<a href="/form_document/{{ doctype.id }}">Добавить документ</a>
+
+<table class="doctype-table">
+    {% for structure in docstructure %}
+        <th>{{ structure.name }}</th>
+    {% endfor %}
+    <tr>
+    {% for field in docfield %}
+        <td>{{ field.value }}</td>
+    {% endfor %}
+    </tr>
+</table>
+{% endblock %}

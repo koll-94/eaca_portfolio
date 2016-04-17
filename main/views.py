@@ -2,29 +2,20 @@
 import functools
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
-from datetime import datetime
-from main.models import FileExpansion
+from django.contrib.auth.models import User
+
+from main.models import Document
 from main.models import DocType
 from main.models import DocField
 from main.models import Profile
 from main.models import DocStructure
+
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.views.generic.base import View
 from django.http import *
-
-
-def test(request):
-    file_exp = FileExpansion.objects.filter()
-    templ_data = {
-        'file_exp': file_exp,
-        'data': 'hello world',
-        'date': "{:%Y %m %d}".format (datetime.now()),
-        'time': "{:%H:%M}".format (datetime.now()),
-
-    }
-    return render_to_response('test.html', templ_data)
+from django.views.decorators.csrf import csrf_exempt
 
 
 def private(request_number=0):
@@ -74,41 +65,73 @@ class LogoutView (View):
 
 
 def main(reqwest):
-    doc_type = DocType.objects.filter()
+    doctypes = DocType.objects.all(),
     templ_data = {
-        'doctype': doc_type,
+        'doctypes': doctypes[0],
     }
     return render_to_response('main.html', templ_data)
 
 
-# @private()
-# def save_document (request, doc_type_id, name, year):
-#     obj_year = datetime.strptime(year, '%d.%m.%Y').date ()
-#     obj_doc_type_id = .objects.get (pk = course)
-#     obj_name = CourseState.objects.get (pk = state)
-#     obj_user = request.user
-#     UserCourseState.objects.update_or_create (user = obj_user, doc_type_id = obj_doc_type_id, year = obj_year, name = obj_name)
-#     return HttpResponseRedirect ("/grid_document/")
-
-
 @private()
-def grid_document(reqwest):
-    document = DocField.objects.filter(),
-    docstructures = DocStructure.objects.filter(),
-    doctypes = DocType.objects.all(),
-    docfield = DocField.objects.select_related().filter(doc_id__user__id = reqwest.user.id)
+def grid_document(reqwest, doctype):
+    doctype_id = int(doctype)
+
+    doctypes = DocType.objects.all()
+    doctype = DocType.objects.get(id=doctype_id)
+    docstructure = DocStructure.objects.select_related().filter(doctype__id=doctype_id)
+
+    #TODO нормальное отображение списка документов с полями
+    docfields = DocField.objects.select_related().filter(
+        document__user__id=reqwest.user.id,
+        document__doctype__id=doctype_id).order_by('document_id')
+
     templ_data = {
-        'doc': document,
-        'docstructures': docstructures[0],
-        'doctypes': doctypes[0],
-        'docfield': docfield[0] if docfield else None,
+        'doctypes': doctypes,
+        'doctype': doctype,
+        'docstructure': docstructure,
+        'docfields': docfields,
     }
-    return render_to_response('document_grid.html', templ_data)
+    return render_to_response('grid_document.html', templ_data)
 
 
 @private()
-def form_document(reqwest):
-    pass
+def form_document(reqwest, doctype, document=None):
+    doctype_id = int(doctype)
+
+    doctypes = DocType.objects.all()
+    doctype = DocType.objects.get(id=doctype_id)
+    docstructure = DocStructure.objects.select_related().filter(doctype__id=doctype_id)
+
+    templ_data = {
+        'doctypes': doctypes,
+        'doctype': doctype,
+        'docstructure': docstructure,
+    }
+    return render_to_response('form_document.html', templ_data)
+
+
+@private()
+@csrf_exempt
+def save_document(request, doctype, document=None):
+    doctype_id = int(doctype)
+    docstructure = DocStructure.objects.select_related().filter(doctype__id=doctype_id)
+
+    if document is None or not document:
+        doctype = DocType.objects.get(id=doctype_id)
+        user = User.objects.get(id=request.user.id)
+        cur_document = Document.objects.update_or_create(doctype=doctype, user=user)
+        document = cur_document[0]
+    else:
+        document_id = int(document)
+        document = Document.objects.get(id=document_id)
+
+    for row in docstructure:
+        value = request.POST.get(unicode(row.id), '')
+        docstructure = DocStructure.objects.get(id=row.id)
+        DocField.objects.update_or_create(document=document, value=value, docstructure=docstructure)
+
+    return HttpResponseRedirect("/grid_document/{}".format(doctype_id))
+
 
 def main_correct(reqwest):
     UchStep = Profile.objects.filter()

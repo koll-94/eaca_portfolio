@@ -34,22 +34,22 @@ class DocSubType(models.Model):
 
 
 class Document(models.Model):
-    doc_type = models.ForeignKey(DocType)
+    doctype = models.ForeignKey(DocType)
     user = models.ForeignKey(User)
-    sub_type = models.ForeignKey(DocSubType, blank=True, default=None)
-    file = models.ForeignKey(Files, blank=True, default=None)
+    docsubtype = models.ForeignKey(DocSubType, null=True, default=None)
+    file = models.ForeignKey(Files, null=True, default=None)
 
 
 class DocStructure(models.Model):
     type = models.CharField(max_length=50, null=True, default='string')
-    doc_type = models.ForeignKey(DocType)
+    doctype = models.ForeignKey(DocType)
     name = models.TextField(max_length=400)
 
 
 class DocField(models.Model):
-    doc_id = models.ForeignKey(Document)
+    document = models.ForeignKey(Document)
     value = models.TextField(max_length=400)
-    doc_str = models.ForeignKey(DocStructure)
+    docstructure = models.ForeignKey(DocStructure)
 
 
 class Profile(models.Model):

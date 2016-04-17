@@ -24,7 +24,9 @@ urlpatterns = [
     url(r'^login/$', views.LoginFormView.as_view()),
     url(r'^logout/$', views.LogoutView.as_view()),
     url(r'^main/$', views.main),
-    url(r'^document_grid/$', views.grid_document),
+    url(r'^grid_document/([0-9]*)$', views.grid_document),
+    url(r'^form_document/([0-9]*)/([0-9]*)$', views.form_document),
+    url(r'^save_document/([0-9]*)/([0-9]*)$', views.save_document),
     url(r'^main_correct/$', views.main_correct),
 ]
 
