@@ -25,8 +25,9 @@ urlpatterns = [
     url(r'^logout/$', views.LogoutView.as_view()),
     url(r'^main/$', views.main),
     url(r'^grid_document/([0-9]*)$', views.grid_document),
-    url(r'^form_document/([0-9]*)/([0-9]*)$', views.form_document),
+    url(r'^form_document/([0-9]*)/$', views.form_document),
     url(r'^save_document/([0-9]*)/([0-9]*)$', views.save_document),
+    url(r'^delete_document/([0-9]*)/([0-9]*)$', views.delete_document),
     url(r'^main_correct/$', views.main_correct),
 ]
 

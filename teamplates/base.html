@@ -46,10 +46,10 @@
     <div id='jqxMenu'>
         <ul>
             <li>
-                <div style="width: 210px"><a href="/main">Профиль</a></div>
+                <div style="width: 160px"><a href="/main">Профиль</a></div>
             </li>
             <li>
-             <div style="width: 210px">Документы</div>
+             <div style="width: 160px">Документы</div>
                 <ul>
                     {% for row in doctypes %}
                         <li><div><a href="/grid_document/{{ row.id }}">{{ row.abbr }}</a></div></li>
@@ -57,10 +57,13 @@
                 </ul>
             </li>
             <li>
-                <div style="width: 210px"><a href="">Отчеты</a></div>
+                <div style="width: 160px"><a href="">Отчеты</a></div>
             </li>
             <li>
-                <div style="width: 210px"><a href="/logout">Выход</a></div>
+                <div style="width: 160px">Портфолио студента</div>
+            </li>
+            <li>
+                <div style="width: 160px"><a href="/logout">Выход</a></div>
             </li>
         </ul>
     </div>

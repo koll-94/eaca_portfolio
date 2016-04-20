@@ -6,20 +6,20 @@
 <div class="main">
     <form name="main_form" action="/main/" method="post">
     <table>
-        <tr><td rowspan="4"> <input type="file" value="{{ foto }}"> </td> <td> ФИО </td> <td> {{ fio }}</td> </tr>
-        <tr><td> Должность </td> <td> {{ dolgnost }} </td> </tr>
-        <tr><td> Кафедра </td> <td> {{ kaf }}</td> </tr>
-        <tr><td> Ученая степень </td> <td> {{ uch_step }} </td> </tr>
-        <tr><td> Вуз, специальность, год окончания </td> <td> {{ diplom }} </td> </tr>
-        <tr><td> Квалификация </td> <td> {{ kval }} </td> </tr>
-        <tr><td> общий стаж</td> <td> {{ experience_all }} </td> </tr>
-        <tr><td> стаж по специальности</td> <td> {{ experience_spec }}</td> </tr>
-        <tr><td> стаж в еаси </td> <td> {{ experience_easa }} </td> </tr>
-        <tr><td> Повышение квалификации </td> <td> {{ document_kval }}</td> </tr>
-        <tr><td> Работа в составе диссертац совета</td> <td> {{ che }}</td> </tr>
-        <tr><td> Сфера научных интересов</td> <td> {{ sience_inter }} </td> </tr>
+        <tr><td rowspan="4"> <input type="file" value="{{ foto }}"> </td> <td> ФИО </td> <td> Карасев Дмитрий Иванович{{ fio }}</td> </tr>
+        <tr><td> Должность </td> <td> {{ dolgnost }} Преподаватель</td> </tr>
+        <tr><td> Кафедра </td> <td> {{ kaf }} Прикладной Информатики</td> </tr>
+        <tr><td> Ученая степень </td> <td> Магистр{{ uch_step }} </td> </tr>
+        <tr><td> Вуз, специальность, год окончания </td> <td> ФГБОУ ВПО «Уральский государственный педагогический университет», географо-биологический факультет, 2001 (диплом с отличием){{ diplom }} </td> </tr>
+        <tr><td> Квалификация </td> <td> {{ kval }} Учитель биологии, учитель географии</td> </tr>
+        <tr><td> общий стаж</td> <td> {{ experience_all }}10лет </td> </tr>
+        <tr><td> стаж по специальности</td> <td> {{ experience_spec }} 8лет</td> </tr>
+        <tr><td> стаж в еаси </td> <td> {{ experience_easa }} 2 года</td> </tr>
+        <tr><td> Повышение квалификации </td> <td> {{ document_kval }} </td> </tr>
+        <tr><td> Работа в составе диссертац совета</td> <td> {{ che }} нет</td> </tr>
+        <tr><td> Сфера научных интересов</td> <td> {{ sience_inter }} Здоровьесбережение</td> </tr>
         <tr><td> Научные достижения </td> </tr>
-        <tr><td> Индекс Хирша </td> <td> {{ hirsh }} </td> </tr>
+        <tr><td> Индекс Хирша </td> <td> 3{{ hirsh }} </td> </tr>
         <tr><td> Зарубежные публикации</td> <td> {{ document_eng_pub }} </td> </tr>
         <tr><td> Монографии статьи в монографиях</td> <td> {{ document_stat }} </td> </tr>
         <tr><td> Статьи ВАК </td> <td> {{ document_stat_vak }} </td> </tr>

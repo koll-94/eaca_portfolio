@@ -7,9 +7,13 @@
 <form method="post" action="/save_document/{{ doctype.id }}/{{ document.id }}">
     <table class="doctype-table">
         {% for structure in docstructure %}
+
             <tr>
                 <td>{{ structure.name }}</td>
-                <td><input id="{{ structure.id }}" name="{{ structure.id }}" type="text"></td>
+                <td><input id="{{ structure.id }}" name="{{ structure.id }}" type="text"
+                value="{% for field in docfields %}
+                           {% if field.docstructure.id == structure.id %}{{ field.value }}{% endif %}
+                       {% endfor %}"></td>
             </tr>
         {% endfor %}
         <tr>

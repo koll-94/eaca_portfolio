@@ -19,11 +19,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def private(request_number=0):
-    """
-        Декоратор, делат метод доступным только после авторизации.
-        В противном случае отсылает на форму авторизации
-        :param request_number - номер параметра запроса
-    """
     def _wrap(method):
         @functools.wraps(method)
         def _wrapped(*args, **kwargs):
@@ -79,33 +74,40 @@ def grid_document(reqwest, doctype):
     doctypes = DocType.objects.all()
     doctype = DocType.objects.get(id=doctype_id)
     docstructure = DocStructure.objects.select_related().filter(doctype__id=doctype_id)
+    documents = Document.objects.select_related().filter(user__id=reqwest.user.id, doctype_id=doctype_id)
+    render_doc = {}
 
-    #TODO нормальное отображение списка документов с полями
-    docfields = DocField.objects.select_related().filter(
-        document__user__id=reqwest.user.id,
-        document__doctype__id=doctype_id).order_by('document_id')
+    for document in documents:
+        render_doc[document.id] = {}
+        docfields = DocField.objects.select_related().filter(document__id=document.id)
+
+        for docfield in docfields:
+            render_doc[document.id][docfield.docstructure.id] = docfield.value
 
     templ_data = {
         'doctypes': doctypes,
         'doctype': doctype,
         'docstructure': docstructure,
-        'docfields': docfields,
+        'render_doc': render_doc,
     }
     return render_to_response('grid_document.html', templ_data)
 
-
+#, document
 @private()
-def form_document(reqwest, doctype, document=None):
+def form_document(reqwest, doctype):
     doctype_id = int(doctype)
 
     doctypes = DocType.objects.all()
     doctype = DocType.objects.get(id=doctype_id)
     docstructure = DocStructure.objects.select_related().filter(doctype__id=doctype_id)
+  #  document_id = int(document)
+ #   docfields = DocField.objects.filter(document__id=document_id)
 
     templ_data = {
         'doctypes': doctypes,
         'doctype': doctype,
         'docstructure': docstructure,
+  #      'docfields': docfields,
     }
     return render_to_response('form_document.html', templ_data)
 
@@ -119,8 +121,9 @@ def save_document(request, doctype, document=None):
     if document is None or not document:
         doctype = DocType.objects.get(id=doctype_id)
         user = User.objects.get(id=request.user.id)
-        cur_document = Document.objects.update_or_create(doctype=doctype, user=user)
-        document = cur_document[0]
+        cur_document = Document(doctype=doctype, user=user)
+        cur_document.save()
+        document = cur_document
     else:
         document_id = int(document)
         document = Document.objects.get(id=document_id)
@@ -132,6 +135,16 @@ def save_document(request, doctype, document=None):
 
     return HttpResponseRedirect("/grid_document/{}".format(doctype_id))
 
+
+@private()
+@csrf_exempt
+def delete_document(reqwest, doctype, document):
+    doctype_id = int(doctype)
+    document_id = int(document)
+    DocField.objects.filter(document__id=document_id).delete()
+    Document.objects.filter(id=document_id).delete()
+
+    return HttpResponseRedirect("/grid_document/{}".format(doctype_id))
 
 def main_correct(reqwest):
     UchStep = Profile.objects.filter()
